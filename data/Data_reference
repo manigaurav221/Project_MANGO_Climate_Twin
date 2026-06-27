@@ -1,0 +1,7 @@
+Rainfall Data 
+
+Daily Gridded Rainfall Data Set Over India. This data product is a very high spatial resolution daily gridded rainfall data (0.25 x 0.25 degree). The unit of rainfall is in millimeter (mm). Data available for 124 years, 1901 to 2024. Data is arranged in 135x129 grid points. The first data in the record is at 6.5N & 66.5E, the second is at 6.5N & 66.75E, and so on. The last data record corresponds to 38.5N & 100.0E. The yearly data file consists of 365/366 records corresponding to non leap/ leap years.  
+
+Temprature Data
+
+This data is arranged in 31x31 grid points. Lat 7.5N, 8.5N ... 36.5, 37.5 (31 Values). Long 67.5E, 68.5E ... 96.5, 97.5 (31 Values). For leap years, data for 366 days are included. The unit of tempereture is in Celsius.
