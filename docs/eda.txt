@@ -1,0 +1,143 @@
+
+1. Dataset overview & data quality
+Dataset	Rows	Grid	Date range
+rainfall_final.csv
+1,811,860
+4,964 cells @ 0.25°
+2013-01-01 → 2013-12-31 (365 days)
+maxtemp_final.csv
+129,552
+355 cells @ 1°
+Same
+mintemp_final.csv
+129,544
+355 cells @ 1°
+Same
+climate_merged.csv
+1,786,679
+Rain 0.25° + temp 1°
+Same
+Quality checks (all pass):
+
+No negative rainfall values
+No cases where max_temp < min_temp
+No duplicate (date, latitude, longitude) rows in merged data
+98.6% of rainfall rows successfully merged with temperature
+Spatial extent:
+
+Rainfall: lat 8.25°–37.25°N, lon 68.0°–97.25°E (India land mask at 0.25°)
+Temperature: lat 8.5°–36.5°N, lon 68.5°–97.5°E (coarser 1° land mask)
+~25,181 rainfall rows unmatched — mostly at the edges where temp grid has no coverage
+Implication for MANGO: Data is clean and merge-ready. For modeling, consider aggregating rainfall to 1° (sum per cell-day) to avoid ~4,895 duplicate rain rows mapping to the same temp cell each day.
+
+2. Rainfall — key findings
+Distribution (highly skewed)
+69.5% of cell-days have 0 mm rain
+Mean: 3.47 mm/cell-day | Median: 0 mm | Std: 11.3 mm
+Max single cell-day: 469.2 mm (extreme event)
+Categories: No Rain 69.5% | Light 20.4% | Moderate 8.9% | Heavy 1.2%
+Rain is sparse and event-driven — typical for Indian gridded precipitation.
+
+Seasonality (strong monsoon signal)
+Period	Share of annual rain	Mean mm/cell/day
+Jun–Sep (monsoon)
+72.6%
+7.55
+Oct–May (non-monsoon)
+27.4%
+1.43
+Monthly national daily totals peak in July (~46,311 mm summed nationally) and are lowest in Jan/Dec (~805 mm).
+
+Wettest day nationally: 2013-07-26 (76,736 mm total across grid)
+Wettest annual cell: 25.25°N, 91.25°E (~7,996 mm/year) — Meghalaya/northeast wet belt
+Most frequent rain cell: 9.75°N, 76.75°E (67% of days wet) — Western Ghats / Kerala
+Spatial pattern
+Wettest 1° cell (merged): 13.5°N, 74.5°E (~14.2 mm mean daily) — west coast
+Driest 1° cell: 35.5°N, 78.5°E (~0.35 mm mean daily) — northwest interior / rain shadow
+Implication: Any model must handle class imbalance (mostly dry days) and strong seasonality. Monsoon months dominate variance.
+
+3. Temperature — key findings
+Ranges (physically plausible for India 2013)
+Variable	Mean	Range
+Max temp
+30.6°C
+5.3°C – 46.2°C
+Min temp
+19.2°C
+−2.5°C – 31.4°C
+Diurnal range
+11.4°C avg
+up to 23.5°C
+Seasonal cycle
+Hottest month (mean max): April (35.8°C) — pre-monsoon heat
+
+Coolest month (mean max): January (25.1°C)
+
+Warmest min temps: May–June (~23–24°C)
+
+Coldest min temps: January (~11.8°C)
+
+Hottest day (national mean max): 2013-04-25
+
+Coldest day (national mean min): 2013-01-09
+
+Latitudinal gradient
+Warmest latitude band (mean max): ~20.5°N (central India)
+Coolest latitude band: ~36.5°N (northern edge / foothills)
+Implication: Temperature has a clearer seasonal and spatial structure than rainfall — easier to model. Diurnal range is a useful derived feature for the climate twin.
+
+4. Cross-variable relationships (merged dataset)
+Pair	Correlation	Interpretation
+Rainfall ↔ Max temp
+−0.06
+Very weak nationally
+Rainfall ↔ Min temp
++0.18
+Rain slightly more likely on warmer nights
+Rainfall ↔ Diurnal range
+−0.35
+Rain tends when day–night spread is smaller (cloudy/monsoon conditions)
+Max ↔ Min temp
++0.77
+Strong — expected
+Rain vs max temp by month (all negative, strongest in monsoon):
+
+Apr	May	Jun	Jul	Aug	Sep
+−0.25
+−0.30
+−0.30
+−0.24
+−0.27
+−0.27
+Pre-monsoon and monsoon: more rain associates with slightly cooler daytime max (cloud cover effect). Winter correlations near zero.
+
+Implication for Climate Twin: Rainfall is not well predicted by same-day max temp alone. Min temp and diurnal range carry more signal. For ML, use multi-variable features and lagged variables (prior days' rain/temp).
+
+5. Extreme events (operational relevance)
+Event	Count	% of merged rows
+Heavy rain ≥ 50 mm
+21,395
+1.2%
+Extreme heat (max ≥ 40°C)
+64,186
+3.6%
+Extreme cold (min ≤ 5°C)
+44,138
+2.5%
+These are the cell-days most relevant for agriculture alerts, flood risk, and heat/cold stress in a climate twin application.
+
+6. Project recommendations
+For modeling / ML
+Treat rainfall as classification + regression — predict wet/dry first, then amount on wet days (69% zeros hurt MSE).
+Use monsoon as a season feature — Jun–Sep vs rest explains 73% of rain variance.
+Add diurnal range — strongest rain correlate among temp variables.
+Aggregate rainfall to 1° before training on merged data — avoids overweighting cells with 16 sub-points per temp cell.
+Consider lags — same-day rain–temp links are weak; weekly/monthly aggregates may work better.
+For the Climate Twin dashboard
+Map layers: Mean rain heatmap (west coast + northeast wet; northwest dry) and max temp (central hot, north cooler).
+Time series: Daily national rain sum + mean temp clearly shows monsoon onset (June) and withdrawal (Oct).
+Alert thresholds: Heavy (≥50 mm), heat (≥40°C), cold (≤5°C) counts are ready to use.
+Data gaps to be aware of
+Only 2013 — no inter-annual climate variability in current data
+Rainfall at 0.25°, temp at 1° — resolution mismatch handled via lat_match/lon_match
+1.4% rainfall rows lack temp match (edge cells)
