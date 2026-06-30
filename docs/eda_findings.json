@@ -1,0 +1,187 @@
+{
+  "coverage": {
+    "rainfall_rows": 1811860,
+    "maxtemp_rows": 129552,
+    "mintemp_rows": 129544,
+    "merged_rows": 1786679,
+    "merge_rate_pct": 98.61,
+    "date_range": "2013-01-01 to 2013-12-31",
+    "n_days": 365,
+    "rain_grid_cells_025deg": 4964,
+    "temp_grid_cells_1deg": 355,
+    "rain_lat_range": [
+      8.25,
+      37.25
+    ],
+    "rain_lon_range": [
+      68.0,
+      97.25
+    ],
+    "temp_lat_range": [
+      8.5,
+      36.5
+    ],
+    "temp_lon_range": [
+      68.5,
+      97.5
+    ]
+  },
+  "rainfall": {
+    "mean_mm_per_cell_day": 3.474,
+    "median_mm": 0.0,
+    "std_mm": 11.266,
+    "max_mm_single_cell_day": 469.2,
+    "pct_zero_rain": 69.54,
+    "category_counts": {
+      "No Rain": 1259972,
+      "Light": 369779,
+      "Moderate": 160539,
+      "Heavy": 21570
+    },
+    "monthly_mean_daily_total_national": {
+      "1": 805.27,
+      "2": 2333.72,
+      "3": 3398.46,
+      "4": 6942.21,
+      "5": 21019.66,
+      "6": 29736.93,
+      "7": 46310.54,
+      "8": 41742.65,
+      "9": 31680.29,
+      "10": 17756.65,
+      "11": 3036.87,
+      "12": 805.9
+    },
+    "top_rain_day": "2013-07-26",
+    "top_rain_day_national_total_mm": 76736.1,
+    "highest_annual_cell_mm": {
+      "lat": 25.25,
+      "lon": 91.25,
+      "total_mm": 7996.0
+    },
+    "wettest_cell_fraction_wet_days": {
+      "lat": 9.75,
+      "lon": 76.75,
+      "fraction": 0.671
+    }
+  },
+  "temperature": {
+    "max_temp_mean": 30.6,
+    "max_temp_std": 5.29,
+    "max_temp_range": [
+      5.31,
+      46.15
+    ],
+    "min_temp_mean": 19.19,
+    "min_temp_std": 6.18,
+    "min_temp_range": [
+      -2.46,
+      31.35
+    ],
+    "diurnal_range_mean": 11.41,
+    "diurnal_range_max": 23.45,
+    "hottest_day_by_national_mean_max": "2013-04-25",
+    "coldest_day_by_national_mean_min": "2013-01-09",
+    "monthly_mean_max_temp": {
+      "1": 25.05,
+      "2": 28.61,
+      "3": 32.21,
+      "4": 35.77,
+      "5": 34.65,
+      "6": 33.59,
+      "7": 31.15,
+      "8": 30.79,
+      "9": 31.38,
+      "10": 30.37,
+      "11": 28.05,
+      "12": 25.65
+    },
+    "monthly_mean_min_temp": {
+      "1": 11.79,
+      "2": 14.22,
+      "3": 17.49,
+      "4": 21.77,
+      "5": 23.44,
+      "6": 24.35,
+      "7": 23.91,
+      "8": 23.6,
+      "9": 23.09,
+      "10": 20.34,
+      "11": 14.7,
+      "12": 11.39
+    },
+    "coolest_lat_band_mean_max": 36.5,
+    "warmest_lat_band_mean_max": 20.5
+  },
+  "correlations": {
+    "rainfall": {
+      "rainfall": 1.0,
+      "max_temp": -0.058,
+      "min_temp": 0.178,
+      "diurnal_range": -0.35
+    },
+    "max_temp": {
+      "rainfall": -0.058,
+      "max_temp": 1.0,
+      "min_temp": 0.765,
+      "diurnal_range": 0.15
+    },
+    "min_temp": {
+      "rainfall": 0.178,
+      "max_temp": 0.765,
+      "min_temp": 1.0,
+      "diurnal_range": -0.522
+    },
+    "diurnal_range": {
+      "rainfall": -0.35,
+      "max_temp": 0.15,
+      "min_temp": -0.522,
+      "diurnal_range": 1.0
+    }
+  },
+  "rain_maxtemp_corr_by_month": {
+    "1": -0.095,
+    "2": -0.238,
+    "3": -0.244,
+    "4": -0.254,
+    "5": -0.302,
+    "6": -0.298,
+    "7": -0.236,
+    "8": -0.268,
+    "9": -0.271,
+    "10": -0.157,
+    "11": -0.018,
+    "12": -0.009
+  },
+  "monsoon": {
+    "monsoon_rain_share_pct": 72.6,
+    "monsoon_mean_mm_per_cell_day": 7.55,
+    "non_monsoon_mean_mm_per_cell_day": 1.428,
+    "monsoon_wet_day_pct": 59.8
+  },
+  "spatial_1deg": {
+    "driest_cell": {
+      "lat": 35.5,
+      "lon": 78.5,
+      "mean_rain": 0.348
+    },
+    "wettest_cell": {
+      "lat": 13.5,
+      "lon": 74.5,
+      "mean_rain": 14.202
+    }
+  },
+  "quality": {
+    "merged_duplicate_rows": 0,
+    "rainfall_negative": 0,
+    "physically_invalid_max_lt_min": 0,
+    "rainfall_rows_not_merged": 25181,
+    "avg_merged_rows_per_day": 4895.0
+  },
+  "extremes": {
+    "heavy_rain_ge_50mm_count": 21395,
+    "heavy_rain_pct": 1.197,
+    "extreme_heat_max_ge_40C": 64186,
+    "extreme_cold_min_le_5C": 44138
+  }
+}
