@@ -5,7 +5,7 @@
     "mintemp_rows": 129544,
     "merged_rows": 1786679,
     "merge_rate_pct": 98.61,
-    "date_range": "2013-01-01 to 2013-12-31",
+    "date_range": "2025-01-01 to 2025-12-31",
     "n_days": 365,
     "rain_grid_cells_025deg": 4964,
     "temp_grid_cells_1deg": 355,
@@ -34,8 +34,8 @@
     "pct_zero_rain": 69.54,
     "category_counts": {
       "No Rain": 1259972,
-      "Light": 369779,
-      "Moderate": 160539,
+      "Moderate": 334267,
+      "Light": 196051,
       "Heavy": 21570
     },
     "monthly_mean_daily_total_national": {
@@ -52,7 +52,7 @@
       "11": 3036.87,
       "12": 805.9
     },
-    "top_rain_day": "2013-07-26",
+    "top_rain_day": "2025-07-26",
     "top_rain_day_national_total_mm": 76736.1,
     "highest_annual_cell_mm": {
       "lat": 25.25,
@@ -80,8 +80,8 @@
     ],
     "diurnal_range_mean": 11.41,
     "diurnal_range_max": 23.45,
-    "hottest_day_by_national_mean_max": "2013-04-25",
-    "coldest_day_by_national_mean_min": "2013-01-09",
+    "hottest_day_by_national_mean_max": "2025-04-25",
+    "coldest_day_by_national_mean_min": "2025-01-09",
     "monthly_mean_max_temp": {
       "1": 25.05,
       "2": 28.61,
